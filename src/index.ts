@@ -3,7 +3,7 @@ const { Schematic } = require('prismarine-schematic');
 const mcAssets = require('minecraft-assets')('1.17.1');
 const { Vec3 } = require('vec3');
 
-console.log(mcAssets.textureContent['wheat_seeds'].texture);
+console.log(mcAssets.textureContent.wheat_seeds.texture);
 
 async function main() {
     const schematic = await Schematic.read(
