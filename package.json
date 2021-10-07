@@ -1,0 +1,19 @@
+{
+  "name": "stackstuck",
+  "version": "1.0.0",
+  "description": "minecraft build bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shino-hinaduki/stackstuck.git"
+  },
+  "author": "shino-hinaduki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shino-hinaduki/stackstuck/issues"
+  },
+  "homepage": "https://github.com/shino-hinaduki/stackstuck#readme"
+}
