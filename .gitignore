@@ -105,3 +105,6 @@ dist
 
 # local test files
 testfiles/
+
+# generated docs
+doc/
