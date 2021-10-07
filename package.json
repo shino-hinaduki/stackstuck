@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/shino-hinaduki/stackstuck/issues"
   },
-  "homepage": "https://github.com/shino-hinaduki/stackstuck#readme"
+  "homepage": "https://github.com/shino-hinaduki/stackstuck#readme",
+  "dependencies": {
+    "prismarine-schematic": "^1.2.1"
+  }
 }
