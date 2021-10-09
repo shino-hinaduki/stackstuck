@@ -6,6 +6,7 @@
     "scripts": {
         "start": "nodemon --watch 'src/**/*.ts' --exec ts-node src/index.ts",
         "build": "tsc -p .",
+        "test": "jest",
         "fix": "run-s fix:prettier fix:eslint",
         "lint": "run-p lint:prettier lint:eslint",
         "fix:eslint": "eslint src --ext .ts --fix",
@@ -30,6 +31,7 @@
         "prismarine-schematic": "^1.2.1"
     },
     "devDependencies": {
+        "@types/jest": "^27.0.2",
         "@typescript-eslint/eslint-plugin": "^4.33.0",
         "@typescript-eslint/parser": "^4.33.0",
         "eslint": "^7.32.0",
@@ -38,9 +40,11 @@
         "eslint-plugin-import": "^2.24.2",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-promise": "^5.1.0",
+        "jest": "^27.2.5",
         "nodemon": "^2.0.13",
         "npm-run-all": "^4.1.5",
         "prettier": "^2.4.1",
+        "ts-jest": "^27.0.5",
         "ts-node": "^10.2.1",
         "typedoc": "^0.22.5",
         "typescript": "^4.4.3"
