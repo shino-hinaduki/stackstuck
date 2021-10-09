@@ -37,9 +37,9 @@ export class Structure {
         const s = this.schematic.start();
         const e = this.schematic.end();
         return {
-            x: e.x - s.x,
-            y: e.y - s.y,
-            z: e.z - s.z,
+            x: e.x - s.x + 1,
+            y: e.y - s.y + 1,
+            z: e.z - s.z + 1,
         };
     }
 }
