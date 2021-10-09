@@ -27,27 +27,12 @@ jobs:
         key: ${{ runner.OS }}-${{ matrix.node-version }}-npm-cache
         restore-keys: |
           ${{ runner.OS }}-${{ matrix.node-version }}-npm-cache
-  build:
-    needs: setup
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
-    steps:
-      - run: npm run build
-  lint:
-    needs: build
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
-    steps:
-      - run: npm run lint
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
-    steps:
-      - run: npm run test
+          
+    - name: Build
+      run: npm run build
+    - name: Lint
+      if: ${{ always() }}
+      run: npm run lint
+    - name: Test
+      if: ${{ always() }}
+      run: npm run test
