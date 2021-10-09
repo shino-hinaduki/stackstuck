@@ -1,6 +1,6 @@
+import * as assert from 'assert';
 import { readFile } from 'fs/promises';
 import { Schematic } from 'prismarine-schematic';
-import { Vec3 } from 'vec3';
 
 const mcAssets = require('minecraft-assets')('1.17.1');
 
@@ -14,6 +14,8 @@ export class Structure {
     filepath: string;
     /** schematic data */
     schematic: any;
+    /** block replace info(originalId -> replaceId) */
+    replaceIds: Map<number, number>;
 
     /** Constructor */
     constructor(version: string) {
@@ -29,11 +31,17 @@ export class Structure {
         this.schematic = await Schematic.read(await readFile(path));
     }
 
+    isLoaded(): boolean {
+        return this.schematic != null;
+    }
+
     /**
      * Returns the building size
      * @returns building size
      */
     size(): { x: number; y: number; z: number } {
+        assert(this.schematic != null);
+
         const s = this.schematic.start();
         const e = this.schematic.end();
         return {
