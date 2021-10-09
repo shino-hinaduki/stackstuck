@@ -28,7 +28,8 @@
     "dependencies": {
         "@types/node": "^16.10.3",
         "minecraft-assets": "^1.8.2",
-        "prismarine-schematic": "^1.2.1"
+        "prismarine-schematic": "^1.2.1",
+        "sharp": "^0.29.1"
     },
     "devDependencies": {
         "@types/jest": "^27.0.2",

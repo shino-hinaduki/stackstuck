@@ -1,8 +1,7 @@
 import * as assert from 'assert';
 import { readFile } from 'fs/promises';
 import { Schematic } from 'prismarine-schematic';
-
-const mcAssets = require('minecraft-assets')('1.17.1');
+const { Vec3 } = require('vec3');
 
 /**
  * Indicates the original data of the building
@@ -13,7 +12,7 @@ export class Structure {
     /** schematic filepath */
     filepath: string;
     /** schematic data */
-    schematic: any;
+    schematic: Schematic;
     /** block replace info(originalId -> replaceId) */
     replaceIds: Map<number, number>;
 
