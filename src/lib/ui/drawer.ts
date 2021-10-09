@@ -108,12 +108,15 @@ export class Drawer {
                     cacheDir
                 );
                 if (typeof pngPath === 'undefined') {
+                    // console.log(`(${i}, ${j}): ${blockName} undefined.`);
                     continue;
                 }
+                // console.log(`(${i}, ${j}): ${blockName} found.`);
                 compositeImages.push({
                     input: pngPath,
                     left: i * Drawer.TILE_WIDTH,
                     top: j * Drawer.TILE_HEIGHT,
+                    // TODO: Image rotation
                 });
             }
         }

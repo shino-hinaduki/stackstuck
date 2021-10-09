@@ -6,41 +6,41 @@ import { Drawer } from './drawer';
 const version = '1.17.1';
 const testData = [
     // {
-    //     input: '01_torch.schematic',
+    //     input: '01_torch.schem',
     //     output: {},
     // },
     // {
-    //     input: '02_treefarm.schematic',
+    //     input: '02_treefarm.schem',
     //     output: {},
     // },
     {
-        input: '03_elevator.schematic',
+        input: '03_elevator.schem',
         output: {},
     },
     {
-        input: '04_railroad.schematic',
+        input: '04_railroad.schem',
         output: {},
     },
     {
-        input: '05_nethergate.schematic',
+        input: '05_nethergate.schem',
         output: {},
     },
-    // {
-    //     input: '06_blueiceroad.schematic',
-    //     output: {},
-    // },
-    // {
-    //     input: '07_flying.schematic',
-    //     output: {},
-    // },
-    // {
-    //     input: '08_arrow.schematic',
-    //     output: {},
-    // },
-    // {
-    //     input: '09_repeaterclock.schematic',
-    //     output: {},
-    // },
+    {
+        input: '06_blueiceroad.schem',
+        output: {},
+    },
+    {
+        input: '07_flying.schem',
+        output: {},
+    },
+    {
+        input: '08_arrow.schem',
+        output: {},
+    },
+    {
+        input: '09_repeaterclock.schem',
+        output: {},
+    },
 ];
 
 test.each(testData)(

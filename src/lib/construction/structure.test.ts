@@ -3,55 +3,55 @@ import { Structure } from './structure';
 const version = '1.17.1';
 const testData = [
     {
-        input: '01_torch.schematic',
+        input: '01_torch.schem',
         output: {
             size: { x: 25, y: 1, z: 25 },
         },
     },
     {
-        input: '02_treefarm.schematic',
+        input: '02_treefarm.schem',
         output: {
             size: { x: 17, y: 5, z: 19 },
         },
     },
     {
-        input: '03_elevator.schematic',
+        input: '03_elevator.schem',
         output: {
             size: { x: 5, y: 24, z: 4 },
         },
     },
     {
-        input: '04_railroad.schematic',
+        input: '04_railroad.schem',
         output: {
             size: { x: 11, y: 6, z: 25 },
         },
     },
     {
-        input: '05_nethergate.schematic',
+        input: '05_nethergate.schem',
         output: {
             size: { x: 4, y: 5, z: 1 },
         },
     },
     {
-        input: '06_blueiceroad.schematic',
+        input: '06_blueiceroad.schem',
         output: {
             size: { x: 4, y: 2, z: 59 },
         },
     },
     {
-        input: '07_flying.schematic',
+        input: '07_flying.schem',
         output: {
             size: { x: 2, y: 1, z: 6 },
         },
     },
     {
-        input: '08_arrow.schematic',
+        input: '08_arrow.schem',
         output: {
             size: { x: 7, y: 4, z: 11 },
         },
     },
     {
-        input: '09_repeaterclock.schematic',
+        input: '09_repeaterclock.schem',
         output: {
             size: { x: 6, y: 1, z: 8 },
         },
