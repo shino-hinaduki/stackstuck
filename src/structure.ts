@@ -2,19 +2,23 @@ import { readFile } from 'fs/promises';
 import { Schematic } from 'prismarine-schematic';
 import { Vec3 } from 'vec3';
 
-const mcAssets = require('minecraft-assets')('1.8.8');
+const mcAssets = require('minecraft-assets')('1.17.1');
 
 /**
  * Indicates the original data of the building
  */
 export class Structure {
+    /** minecraft version */
+    version: string;
+    /** schematic filepath */
     filepath: string;
+    /** schematic data */
     schematic: any;
 
-    /**
-     * Constructor
-     */
-    constructor() {}
+    /** Constructor */
+    constructor(version: string) {
+        this.version = version;
+    }
 
     /**
      * Load the schematic file
@@ -33,9 +37,9 @@ export class Structure {
         const s = this.schematic.start();
         const e = this.schematic.end();
         return {
-            x: e.x - s.x,
-            y: e.y - s.y,
-            z: e.z - s.z,
+            x: e.x - s.x + 1,
+            y: e.y - s.y + 1,
+            z: e.z - s.z + 1,
         };
     }
 }
