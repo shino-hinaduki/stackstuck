@@ -74,7 +74,7 @@ export class Drawer {
             const img = await jimp.read(tmpImgPath);
             await img
                 .crop(0, 0, Drawer.TILE_WIDTH, Drawer.TILE_HEIGHT)
-                .write(imgPath);
+                .writeAsync(imgPath);
         }
 
         // Returns the path where the image is saved.
