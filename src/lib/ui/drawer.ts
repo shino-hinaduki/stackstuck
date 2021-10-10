@@ -1,11 +1,11 @@
-import * as fs from 'fs';
+import * as fs from 'fs/promises';
 import * as path from 'path';
 import * as assert from 'assert';
 import * as jimp from 'jimp';
 import * as mcAssets from 'minecraft-assets';
 import { Schematic } from 'prismarine-schematic';
 import { Structure } from '../construction/structure';
-const { Vec3 } = require('vec3');
+import { Vec3 } from 'vec3';
 
 /**
  * GUI-related drawing implementation
@@ -15,6 +15,20 @@ export class Drawer {
     static readonly TILE_WIDTH: number = 16;
     /** Tile Image Height */
     static readonly TILE_HEIGHT: number = 16;
+
+    /**
+     * Check file/directory exitsts
+     * @param path
+     * @returns true exists
+     * @returns false not exists
+     */
+    static async isExists(path: string): Promise<boolean> {
+        try {
+            return !!(await fs.lstat(path));
+        } catch (e) {
+            return false;
+        }
+    }
 
     /**
      * Returns the path to the PNG file for the texture specified by name.
@@ -35,15 +49,15 @@ export class Drawer {
         assert(!!name);
         assert(!!version);
         const imgPath = path.join(cacheDir, `${version}-${name}.png`);
-        const tmpImgPath = path.join(cacheDir, `${version}-${name}.tmp.png`);
+        const tmpImgPath = path.join(cacheDir, `${version}-${name}.origin.png`);
 
         // Create cache dir if it does not exist.
-        if (!fs.existsSync(cacheDir)) {
-            fs.mkdirSync(cacheDir);
+        if (!(await Drawer.isExists(cacheDir))) {
+            await fs.mkdir(cacheDir);
         }
 
         // Download image
-        if (!fs.existsSync(imgPath)) {
+        if (!(await Drawer.isExists(imgPath))) {
             const assets = mcAssets(version);
             assert(!!assets, `invalid version. ${version}`);
             const content = assets.textureContent[name];
@@ -54,7 +68,7 @@ export class Drawer {
                 /^data:image\/png;base64,/,
                 ''
             );
-            fs.writeFileSync(tmpImgPath, data, 'base64');
+            await fs.writeFile(tmpImgPath, data, 'base64');
 
             // Crop out images that are not the right size. (For example, 'water').
             const img = await jimp.read(tmpImgPath);
@@ -91,7 +105,6 @@ export class Drawer {
 
         // Enumerate the blocks in the x-z plane, get the corresponding images, and paste them.
         const img = await jimp.create(width, height);
-        const compositeImages = [];
         for (let j = 0; j < size.z; j++) {
             for (let i = 0; i < size.x; i++) {
                 const block = s.schematic.getBlock(new Vec3(i, offsetY, j));
