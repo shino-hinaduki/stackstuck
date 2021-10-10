@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as assert from 'assert';
-import * as sharp from 'sharp';
+import * as jimp from 'jimp';
 import * as mcAssets from 'minecraft-assets';
 import { Schematic } from 'prismarine-schematic';
 import { Structure } from '../construction/structure';
@@ -57,15 +57,10 @@ export class Drawer {
             fs.writeFileSync(tmpImgPath, data, 'base64');
 
             // Crop out images that are not the right size. (For example, 'water').
-            await sharp(tmpImgPath)
-                .extract({
-                    width: Drawer.TILE_WIDTH,
-                    height: Drawer.TILE_HEIGHT,
-                    left: 0,
-                    top: 0,
-                })
-                .png()
-                .toFile(imgPath);
+            const img = await jimp.read(tmpImgPath);
+            await img
+                .crop(0, 0, Drawer.TILE_WIDTH, Drawer.TILE_HEIGHT)
+                .write(imgPath);
         }
 
         // Returns the path where the image is saved.
@@ -82,7 +77,7 @@ export class Drawer {
         s: Structure,
         offsetY: number,
         cacheDir: string = './.stackstuckcache'
-    ): Promise<any> {
+    ): Promise<jimp> {
         assert(s?.isLoaded());
         assert(!!s?.version);
         assert(
@@ -95,6 +90,7 @@ export class Drawer {
         const height = size.z * Drawer.TILE_HEIGHT;
 
         // Enumerate the blocks in the x-z plane, get the corresponding images, and paste them.
+        const img = await jimp.create(width, height);
         const compositeImages = [];
         for (let j = 0; j < size.z; j++) {
             for (let i = 0; i < size.x; i++) {
@@ -108,30 +104,17 @@ export class Drawer {
                     cacheDir
                 );
                 if (typeof pngPath === 'undefined') {
-                    // console.log(`(${i}, ${j}): ${blockName} undefined.`);
                     continue;
                 }
-                // console.log(`(${i}, ${j}): ${blockName} found.`);
-                compositeImages.push({
-                    input: pngPath,
-                    left: i * Drawer.TILE_WIDTH,
-                    top: j * Drawer.TILE_HEIGHT,
-                    // TODO: Image rotation
-                });
+                const compositeImage = await jimp.read(pngPath);
+                // TODO: rotate compositeImage
+                img.composite(
+                    compositeImage,
+                    i * Drawer.TILE_WIDTH,
+                    j * Drawer.TILE_HEIGHT
+                );
             }
         }
-
-        // Image processing
-        const img = await sharp({
-            create: {
-                width: width,
-                height: height,
-                channels: 4,
-                background: { r: 0, g: 0, b: 0, alpha: 0.0 },
-            },
-        })
-            .composite(compositeImages)
-            .png();
         return img;
     }
 }

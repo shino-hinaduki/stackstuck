@@ -1,18 +1,18 @@
 import * as assert from 'assert';
-import * as sharp from 'sharp';
+import * as jimp from 'jimp';
 import { Structure } from '../construction/structure';
 import { Drawer } from './drawer';
 
 const version = '1.17.1';
 const testData = [
-    // {
-    //     input: '01_torch.schem',
-    //     output: {},
-    // },
-    // {
-    //     input: '02_treefarm.schem',
-    //     output: {},
-    // },
+    {
+        input: '01_torch.schem',
+        output: {},
+    },
+    {
+        input: '02_treefarm.schem',
+        output: {},
+    },
     {
         input: '03_elevator.schem',
         output: {},
@@ -52,7 +52,7 @@ test.each(testData)(
         const y = s.size().y;
         for (let i = 0; i < y; i++) {
             const img = await Drawer.drawSlice(s, i);
-            await img.toFile(`testout.${input}.${i}.png`);
+            await img.writeAsync(`testout.${input}.${i}.png`);
         }
         // Expectations change with updates on the texture side, so we don't test strictly now.
     }
