@@ -1,3 +1,5 @@
+[![Node.js CI](https://github.com/shino-hinaduki/stackstuck/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/shino-hinaduki/stackstuck/actions/workflows/node.js.yml)
+
 # stackstuck
 
 Minecraftのサバイバルモードで自動建築を行うBotです(W.I.P)

@@ -105,3 +105,9 @@ dist
 
 # generated docs
 doc/
+
+# test output file
+testout.*
+
+# image cache
+.stackstuckcache/
