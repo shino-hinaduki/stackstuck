@@ -6,7 +6,7 @@
     "scripts": {
         "start": "nodemon --watch 'src/**/*.ts' --exec ts-node src/index.ts",
         "build": "tsc -p .",
-        "test": "jest",
+        "test": "jest --testTimeout=30000",
         "fix": "run-s fix:prettier fix:eslint",
         "lint": "run-p lint:prettier lint:eslint",
         "fix:eslint": "eslint src --ext .ts --fix",
