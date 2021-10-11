@@ -1,4 +1,5 @@
 import * as assert from 'assert';
+import * as fs from 'fs/promises';
 import * as jimp from 'jimp';
 import { Structure } from '../construction/structure';
 import { Drawer } from './drawer';
@@ -52,8 +53,12 @@ test.each(testData)(
         const y = s.size().y;
         for (let i = 0; i < y; i++) {
             const img = await Drawer.drawSlice(s, i);
-            await img.writeAsync(`testout.${input}.${i}.png`);
+            const path = `testout.${input}.${i}.png`;
+            await img.writeAsync(path);
+
+            // Expectations change with updates on the texture side, so we don't test strictly now.
+            // remove file
+            await fs.unlink(path);
         }
-        // Expectations change with updates on the texture side, so we don't test strictly now.
     }
 );
