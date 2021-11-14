@@ -26,10 +26,17 @@
     },
     "homepage": "https://github.com/shino-hinaduki/stackstuck#readme",
     "dependencies": {
+        "@types/config": "0.0.39",
         "@types/node": "^16.10.3",
+        "config": "^3.3.6",
         "jimp": "^0.16.1",
         "minecraft-assets": "^1.8.2",
-        "prismarine-schematic": "^1.2.1"
+        "minecraft-data": "^2.95.0",
+        "mineflayer": "^3.11.2",
+        "mineflayer-pathfinder": "^1.8.0",
+        "prismarine-schematic": "^1.2.1",
+        "prismarine-viewer": "^1.20.0",
+        "prismarine-windows": "^2.4.2"
     },
     "devDependencies": {
         "@types/jest": "^27.0.2",

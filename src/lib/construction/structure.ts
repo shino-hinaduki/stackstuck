@@ -49,4 +49,30 @@ export class Structure {
             z: e.z - s.z + 1,
         };
     }
+
+    /**
+     * Returns the required Block information for the specified XZ plane.
+     * @param offsetY layer offset
+     * @returns blockName -> count
+     */
+    getLayerBlockCount(offsetY: number): Map<string, number> {
+        const dst = new Map<string, number>();
+        assert(this.schematic != null);
+
+        const size = this.size();
+        assert(offsetY < size.y);
+        for (let j = 0; j < size.z; j++) {
+            for (let i = 0; i < size.x; i++) {
+                const block = this.schematic.getBlock(new Vec3(i, offsetY, j));
+                const blockName = block.name;
+
+                if (typeof dst.get(blockName) === 'undefined') {
+                    dst.set(blockName, 0);
+                }
+                dst.set(blockName, dst.get(blockName) + 1);
+            }
+        }
+
+        return dst;
+    }
 }
